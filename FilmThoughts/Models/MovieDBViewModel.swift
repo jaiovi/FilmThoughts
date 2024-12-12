@@ -63,4 +63,9 @@ struct MovieItem : Identifiable, Decodable {
     let poster_path: String
     let title: String
     let release_date: String
+    
+    var poster_link: URL {
+        let baseURL = URL(string: "https://image.tmdb.org/t/p/w300")!
+        return baseURL.appendingPathComponent(poster_path)
+    }
 }
