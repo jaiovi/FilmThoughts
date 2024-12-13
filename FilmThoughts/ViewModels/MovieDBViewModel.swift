@@ -5,21 +5,21 @@
 //  Created by Jesus Sebastian Jaime Oviedo on 09/12/24.
 //
 
+/*
+enum TrendingState {
+    case none
+    case loading
+    case error(message: String)
+    case trendingItems([MovieItem])
+}
+*/
+
 import Foundation
 import SwiftUI
 
 @MainActor
 class MovieDBViewModel: ObservableObject  {
     @Published var trending: [MovieItem] = []
-    
-    /*
-    enum TrendingState {
-        case none
-        case loading
-        case error(message: String)
-        case trendingItems([MovieItem])
-    }
-    */
     
     func loadTrending() {
         Task {
@@ -30,15 +30,6 @@ class MovieDBViewModel: ObservableObject  {
             do {
                 //makes call
                 let (data, _) = try await URLSession.shared.data(from: url)
-                //check what code did url call gave us
-                /*
-                let statusCode = (response as? HTTPURLResponse)?.statusCode
-                if 200..<300 ~= statusCode ?? 0 {
-                    print("Success")
-                } else {
-                    print("Error")
-                }
-                 */
                 //parses JSON to object
                 let trendingResults = try JSONDecoder().decode(TrendingResults.self, from: data)
                 //saves the data
@@ -47,6 +38,31 @@ class MovieDBViewModel: ObservableObject  {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func loadSearch(searchTitle: String, searchPage: Int) {
+        Task {
+            let url = URL(string: "https://api.themoviedb.org/3/search/movie")!
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+            let queryItems: [URLQueryItem] = [
+              URLQueryItem(name: "query", value: searchTitle),
+              URLQueryItem(name: "include_adult", value: "false"),
+              URLQueryItem(name: "page", value: "\(searchPage)"),
+            ]
+            components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
+
+            var request = URLRequest(url: components.url!)
+            request.httpMethod = "GET"
+            request.timeoutInterval = 10
+            request.allHTTPHeaderFields = [
+              "accept": "application/json",
+              "Authorization": Keys.tmdbApiBearer
+            ]
+
+            let (data, _) = try await URLSession.shared.data(for: request)
+            print(String(decoding: data, as: UTF8.self))
+        }
+        
     }
 }
 

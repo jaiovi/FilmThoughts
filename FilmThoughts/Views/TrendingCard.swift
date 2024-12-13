@@ -14,9 +14,11 @@ struct TrendingCard: View {
                 //poster
                 AsyncImage(url: movie.poster_link) { image in
                     image
-                        .resizable()
+                        .resizable() // Make the image resizable
                         .scaledToFill()
-                        .frame(width: 300, height: 200)
+                        .frame(maxWidth: .infinity, maxHeight: 200) // Define frame size
+                        .clipped() // Clip the image to the frame
+                        
                 }placeholder: {
                     ProgressView()
                 }
@@ -30,9 +32,10 @@ struct TrendingCard: View {
                 .background(Color.accentColor)
             
         }
-        .padding()
-        .frame(width: 300, height: 200)
         .cornerRadius(10)
+        .padding()
+        .frame(maxWidth: .infinity)
+        
         
     }
         
