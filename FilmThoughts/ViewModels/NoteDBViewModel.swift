@@ -44,6 +44,7 @@ class NotesDBViewModel: ObservableObject {
     }
 
     // Helper function to download an image from URL
+    /*
     private func downloadImage(from url: URL, completion: @escaping (Data?) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data, error == nil {
@@ -52,6 +53,13 @@ class NotesDBViewModel: ObservableObject {
                 print("Failed to download image: \(String(describing: error))")
                 completion(nil)
             }
+        }.resume()
+    }
+     */
+    // less clunky solution
+    private func downloadImage(from url: URL, completion: @escaping (Data?) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            completion(data)
         }.resume()
     }
     
