@@ -11,6 +11,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		212D49752D11FCBD007C0F59 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		21ACC93F2D070AF60050A741 /* FilmThoughts */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = FilmThoughts;
@@ -32,6 +37,7 @@
 		21ACC9342D070AF50050A741 = {
 			isa = PBXGroup;
 			children = (
+				212D49752D11FCBD007C0F59 /* Shared */,
 				21ACC93F2D070AF60050A741 /* FilmThoughts */,
 				21ACC93E2D070AF60050A741 /* Products */,
 			);
@@ -61,6 +67,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				212D49752D11FCBD007C0F59 /* Shared */,
 				21ACC93F2D070AF60050A741 /* FilmThoughts */,
 			);
 			name = FilmThoughts;
