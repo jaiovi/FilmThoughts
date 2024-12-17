@@ -10,11 +10,12 @@ import SwiftUI
 struct AddNoteView: View {
     let movieTitle: String
     let movieID: Int
+    @ObservedObject var notesModel: NotesDBViewModel
     
     @State private var noteContent: String = ""
     @State private var selectedImagePath: String? = nil
+    
     @StateObject private var viewModel = MovieImagesViewModel() // ViewModel instance
-    @ObservedObject private var notesModel = NotesDBViewModel()
     
     @Environment(\.dismiss) var dismiss // For dismissing the view
     
@@ -105,5 +106,7 @@ struct AddNoteView: View {
 
 
 #Preview {
-    AddNoteView(movieTitle: "Wolverine", movieID: 533535)
+    let notesViewModel = NotesDBViewModel()
+    return AddNoteView(movieTitle: "Wolverine", movieID: 533535, notesModel: notesViewModel)
 }
+

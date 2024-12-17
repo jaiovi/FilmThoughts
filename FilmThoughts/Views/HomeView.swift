@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject private var viewModel = NotesDBViewModel()
+    @ObservedObject var viewModel: NotesDBViewModel
 
     var body: some View {
         NavigationView {
@@ -22,23 +22,23 @@ struct HomeView: View {
                             } label: {
                                 Label("Edit", systemImage: "pencil")
                             }
-                            
+                        }
+                        .swipeActions {
                             Button(role: .destructive) {
                                 viewModel.removeNote(note: note)
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
-
-                            
                         }
                 }
             }
-            .listStyle(PlainListStyle()) //quits the ugly background
+            .listStyle(PlainListStyle())
             .navigationTitle("Notes")
         }
     }
 }
 
 #Preview {
-    HomeView()
+    let notesViewModel = NotesDBViewModel()
+    HomeView(viewModel: notesViewModel)
 }

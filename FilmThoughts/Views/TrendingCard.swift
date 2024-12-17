@@ -9,9 +9,10 @@ import SwiftUI
 
 struct TrendingCard: View {
     let movie: MovieItem
+    let notesViewModel: NotesDBViewModel // Accept the shared NotesDBViewModel
 
     var body: some View {
-        NavigationLink(destination: AddNoteView(movieTitle: movie.title, movieID: movie.id)) {
+        NavigationLink(destination: AddNoteView(movieTitle: movie.title, movieID: movie.id, notesModel: notesViewModel)) {
             ZStack(alignment: .bottom) {
                 // Poster
                 AsyncImage(url: movie.poster_link) { image in
@@ -38,4 +39,11 @@ struct TrendingCard: View {
         }
         .buttonStyle(PlainButtonStyle())
     }
+}
+
+#Preview {
+    let notesViewModel = NotesDBViewModel()
+    let sampleMovie = MovieItem(adult: true, id: 345234, poster_path: "/lECA3TxwjTOjjMqjvUe9kBarmM9.jpg", title: "Wolverine", release_date: "2020-05-30")
+
+    TrendingCard(movie: sampleMovie, notesViewModel: notesViewModel)
 }

@@ -43,9 +43,13 @@ struct NoteCard: View {
                 Text(note.movieTitle)
                     .font(.headline)
                     .foregroundColor(.white)
-                    .padding([.leading, .bottom], 10)
+                    //.padding([.leading, .bottom], 10)
+                Text(note.note)
+                    .font(.footnote)
+                    .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
         }
         .cornerRadius(10) // Round corners
         .padding() // Padding around the card

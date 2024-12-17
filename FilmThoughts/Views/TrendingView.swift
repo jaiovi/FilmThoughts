@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct TrendingView: View {
     @StateObject var viewModel = MovieDBViewModel()
+    @ObservedObject var notesViewModel: NotesDBViewModel // Shared NotesDBViewModel
 
     var body: some View {
         NavigationView {
@@ -20,9 +19,9 @@ struct TrendingView: View {
                         .padding()
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 20) { // Use LazyVStack for efficient scrolling
+                        LazyVStack(spacing: 20) {
                             ForEach(viewModel.trending) { movie in
-                                TrendingCard(movie: movie)
+                                TrendingCard(movie: movie, notesViewModel: notesViewModel)
                             }
                         }
                         .padding()
@@ -40,5 +39,6 @@ struct TrendingView: View {
 }
 
 #Preview {
-    TrendingView()
+    let notesViewModel = NotesDBViewModel()
+    TrendingView(notesViewModel: notesViewModel)
 }
