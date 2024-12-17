@@ -8,9 +8,16 @@
 import SwiftUI
 import Combine
 
+import Foundation
+
+
 @MainActor
 class NotesDBViewModel: ObservableObject {
-    @Published var notes: [NoteItem] = []
+    @Published var notes: [NoteItem] = [] {
+        didSet {
+            saveNotes()
+        }
+    }
     
     private var cancellables = Set<AnyCancellable>()
 
@@ -19,8 +26,9 @@ class NotesDBViewModel: ObservableObject {
 
         // Observe changes to the notes array and print a message when a new note is added
         $notes
-            .sink { notes in
+            .sink { [weak self] notes in
                 print("Notes updated! Current count: \(notes.count)")
+                self?.saveNotes() // Save changes to persistence
             }
             .store(in: &cancellables)
     }
@@ -63,11 +71,29 @@ class NotesDBViewModel: ObservableObject {
         }.resume()
     }
     
+    private let fileURL: URL = {
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return documentsDirectory.appendingPathComponent("notes.json")
+    }()
+
     private func loadNotes() {
-        // For example, load sample notes (replace with your persistence logic)
-        notes = [
-            NoteItem(movieTitle: "Sample Movie 1", movieImage: UIImage(named: "example_image_note")!.jpegData(compressionQuality: 1.0)!, note: "Sample note 1"),
-            NoteItem(movieTitle: "Sample Movie 2", movieImage: UIImage(named: "example_image_note")!.jpegData(compressionQuality: 1.0)!, note: "Sample note 2")
-        ]
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let decodedNotes = try JSONDecoder().decode([NoteItem].self, from: data)
+            notes = decodedNotes
+        } catch {
+            print("Failed to load notes: \(error.localizedDescription)")
+            notes = []
+        }
     }
+
+    private func saveNotes() {
+        do {
+            let data = try JSONEncoder().encode(notes)
+            try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
+        } catch {
+            print("Failed to save notes: \(error.localizedDescription)")
+        }
+    }
+
 }
