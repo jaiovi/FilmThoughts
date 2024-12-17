@@ -33,15 +33,8 @@ struct HomeView: View {
                         }
                 }
             }
-            .listStyle(PlainListStyle()) //quit ugly background
+            .listStyle(PlainListStyle()) //quits the ugly background
             .navigationTitle("Notes")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Add") {
-                        // Code to add a new note
-                    }
-                }
-            }
         }
     }
 }

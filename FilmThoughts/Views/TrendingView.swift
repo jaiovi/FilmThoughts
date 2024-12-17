@@ -7,32 +7,34 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct TrendingView: View {
-    // call the builder
     @StateObject var viewModel = MovieDBViewModel()
-    
+
     var body: some View {
-        VStack {
+        NavigationView {
             VStack {
-                Text("Trending Movies")
-                    .font(.title)
-                    .fontWeight(.heavy)
-                //shows the list
-                if(viewModel.trending.isEmpty) {
+                if viewModel.trending.isEmpty {
                     Text("No results")
+                        .padding()
                 } else {
                     ScrollView {
-                        ForEach(viewModel.trending) { movie in
-                            TrendingCard(movie: movie)
+                        LazyVStack(spacing: 20) { // Use LazyVStack for efficient scrolling
+                            ForEach(viewModel.trending) { movie in
+                                TrendingCard(movie: movie)
+                            }
                         }
+                        .padding()
                     }
                 }
             }
             .frame(maxWidth: .infinity)
             .background(Color.background)
-        }
-        .onAppear {
-            viewModel.loadTrending()
+            .navigationTitle("Trending")
+            .onAppear {
+                viewModel.loadTrending()
+            }
         }
     }
 }

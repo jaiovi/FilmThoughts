@@ -12,8 +12,11 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            Tab("Home", systemImage: "books.vertical.fill") {
+            Tab("Notes", systemImage: "books.vertical.fill") {
                 HomeView()
+            }
+            Tab("Trending", systemImage: "chart.line.uptrend.xyaxis") {
+                TrendingView()
             }
         }
         

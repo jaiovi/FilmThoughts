@@ -5,6 +5,8 @@
 //  Created by Jesus Sebastian Jaime Oviedo on 13/12/24.
 //
 
+// NOT IMPLEMENTED
+
 import SwiftUI
 
 struct SearchView: View {

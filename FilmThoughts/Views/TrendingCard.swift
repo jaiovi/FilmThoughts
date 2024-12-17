@@ -8,35 +8,34 @@
 import SwiftUI
 
 struct TrendingCard: View {
-    let movie : MovieItem
+    let movie: MovieItem
+
     var body: some View {
-        ZStack(alignment: .bottom) {
-                //poster
+        NavigationLink(destination: AddNoteView(movieTitle: movie.title, movieID: movie.id)) {
+            ZStack(alignment: .bottom) {
+                // Poster
                 AsyncImage(url: movie.poster_link) { image in
                     image
-                        .resizable() // Make the image resizable
+                        .resizable()
                         .scaledToFill()
-                        .frame(maxWidth: .infinity, maxHeight: 200) // Define frame size
-                        .clipped() // Clip the image to the frame
-                        
-                }placeholder: {
+                        .frame(height: 200)
+                        .clipped()
+                } placeholder: {
                     ProgressView()
                 }
+
                 VStack {
                     let release_date_cut = movie.release_date.prefix(4)
                     Text("\(movie.title) (\(release_date_cut))")
                         .font(.headline)
+                        .padding(10)
                 }
-                .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color.accentColor)
-            
+            }
+            .cornerRadius(10)
+            .padding(.horizontal)
         }
-        .cornerRadius(10)
-        .padding()
-        .frame(maxWidth: .infinity)
-        
-        
+        .buttonStyle(PlainButtonStyle())
     }
-        
 }

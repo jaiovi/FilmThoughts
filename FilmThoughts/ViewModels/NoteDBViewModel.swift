@@ -6,44 +6,33 @@
 //
 
 import SwiftUI
+import Combine
 
 @MainActor
 class NotesDBViewModel: ObservableObject {
     @Published var notes: [NoteItem] = []
-    init() { // Here you could load persisted notes if needed
+    
+    private var cancellables = Set<AnyCancellable>()
+
+    init() {
         loadNotes()
+
+        // Observe changes to the notes array and print a message when a new note is added
+        $notes
+            .sink { notes in
+                print("Notes updated! Current count: \(notes.count)")
+            }
+            .store(in: &cancellables)
     }
 
-    // Download image from URL, save it as data, and create a note
     func addNote(title: String, imageUrl: URL, note: String) {
         downloadImage(from: imageUrl) { [weak self] imageData in
             guard let imageData = imageData else { return }
-            let newNote = NoteItem(movieTitle: title, movieImage: imageData, note: note)
-            self?.notes.append(newNote)
-        }
-    }
 
-    // Function to update an existing note
-    func updateNote(note: NoteItem, newTitle: String?, newImageUrl: URL?, newNote: String?) {
-        guard let index = notes.firstIndex(where: { $0.id == note.id }) else { return }
-
-        // Download new image if URL is provided
-        if let newImageUrl = newImageUrl {
-            downloadImage(from: newImageUrl) { [weak self] newImageData in
-                guard let newImageData = newImageData else { return }
-                self?.notes[index] = NoteItem(
-                    movieTitle: newTitle ?? note.movieTitle,
-                    movieImage: newImageData,
-                    note: newNote ?? note.note
-                )
+            DispatchQueue.main.async {
+                let newNote = NoteItem(movieTitle: title, movieImage: imageData, note: note)
+                self?.notes.append(newNote)
             }
-        } else {
-            // Update note without changing the image
-            notes[index] = NoteItem(
-                movieTitle: newTitle ?? note.movieTitle,
-                movieImage: note.movieImage,
-                note: newNote ?? note.note
-            )
         }
     }
 
