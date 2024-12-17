@@ -6,14 +6,79 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		217026D02D11FEC10043C10B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217026CF2D11FEC10043C10B /* WidgetKit.framework */; };
+		217026D22D11FEC10043C10B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217026D12D11FEC10043C10B /* SwiftUI.framework */; };
+		217026E32D11FEC30043C10B /* NoteWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 217026CD2D11FEC10043C10B /* NoteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		217026E12D11FEC30043C10B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21ACC9352D070AF50050A741 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 217026CC2D11FEC10043C10B;
+			remoteInfo = NoteWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		217026E42D11FEC30043C10B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				217026E32D11FEC30043C10B /* NoteWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		217026CD2D11FEC10043C10B /* NoteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NoteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		217026CF2D11FEC10043C10B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		217026D12D11FEC10043C10B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		217026EE2D1206680043C10B /* NoteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NoteWidgetExtension.entitlements; sourceTree = "<group>"; };
 		21ACC93D2D070AF60050A741 /* FilmThoughts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmThoughts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		217026E72D11FEC30043C10B /* Exceptions for "NoteWidget" folder in "NoteWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 217026CC2D11FEC10043C10B /* NoteWidgetExtension */;
+		};
+		217026EA2D11FFF20043C10B /* Exceptions for "Shared" folder in "NoteWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				Extensions/ColorMedianGradient.swift,
+				Models/NoteItem.swift,
+				ViewModels/NoteDBViewModel.swift,
+			);
+			target = 217026CC2D11FEC10043C10B /* NoteWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		212D49752D11FCBD007C0F59 /* Shared */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				217026EA2D11FFF20043C10B /* Exceptions for "Shared" folder in "NoteWidgetExtension" target */,
+			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		217026D32D11FEC10043C10B /* NoteWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				217026E72D11FEC30043C10B /* Exceptions for "NoteWidget" folder in "NoteWidgetExtension" target */,
+			);
+			path = NoteWidget;
 			sourceTree = "<group>";
 		};
 		21ACC93F2D070AF60050A741 /* FilmThoughts */ = {
@@ -24,6 +89,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		217026CA2D11FEC10043C10B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				217026D22D11FEC10043C10B /* SwiftUI.framework in Frameworks */,
+				217026D02D11FEC10043C10B /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21ACC93A2D070AF60050A741 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -34,11 +108,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		217026CE2D11FEC10043C10B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				217026CF2D11FEC10043C10B /* WidgetKit.framework */,
+				217026D12D11FEC10043C10B /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		21ACC9342D070AF50050A741 = {
 			isa = PBXGroup;
 			children = (
+				217026EE2D1206680043C10B /* NoteWidgetExtension.entitlements */,
 				212D49752D11FCBD007C0F59 /* Shared */,
 				21ACC93F2D070AF60050A741 /* FilmThoughts */,
+				217026D32D11FEC10043C10B /* NoteWidget */,
+				217026CE2D11FEC10043C10B /* Frameworks */,
 				21ACC93E2D070AF60050A741 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				21ACC93D2D070AF60050A741 /* FilmThoughts.app */,
+				217026CD2D11FEC10043C10B /* NoteWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,6 +141,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		217026CC2D11FEC10043C10B /* NoteWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 217026E82D11FEC30043C10B /* Build configuration list for PBXNativeTarget "NoteWidgetExtension" */;
+			buildPhases = (
+				217026C92D11FEC10043C10B /* Sources */,
+				217026CA2D11FEC10043C10B /* Frameworks */,
+				217026CB2D11FEC10043C10B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				217026D32D11FEC10043C10B /* NoteWidget */,
+			);
+			name = NoteWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = NoteWidgetExtension;
+			productReference = 217026CD2D11FEC10043C10B /* NoteWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		21ACC93C2D070AF60050A741 /* FilmThoughts */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21ACC94B2D070AF60050A741 /* Build configuration list for PBXNativeTarget "FilmThoughts" */;
@@ -61,10 +170,12 @@
 				21ACC9392D070AF60050A741 /* Sources */,
 				21ACC93A2D070AF60050A741 /* Frameworks */,
 				21ACC93B2D070AF60050A741 /* Resources */,
+				217026E42D11FEC30043C10B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				217026E22D11FEC30043C10B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				212D49752D11FCBD007C0F59 /* Shared */,
@@ -87,6 +198,9 @@
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					217026CC2D11FEC10043C10B = {
+						CreatedOnToolsVersion = 16.1;
+					};
 					21ACC93C2D070AF60050A741 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -107,11 +221,19 @@
 			projectRoot = "";
 			targets = (
 				21ACC93C2D070AF60050A741 /* FilmThoughts */,
+				217026CC2D11FEC10043C10B /* NoteWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		217026CB2D11FEC10043C10B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21ACC93B2D070AF60050A741 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,6 +244,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		217026C92D11FEC10043C10B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		21ACC9392D070AF60050A741 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,7 +260,71 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		217026E22D11FEC30043C10B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 217026CC2D11FEC10043C10B /* NoteWidgetExtension */;
+			targetProxy = 217026E12D11FEC30043C10B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		217026E52D11FEC30043C10B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NoteWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CHNNPCP83M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NoteWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NoteWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = joviedo24.FilmThoughts.NoteWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		217026E62D11FEC30043C10B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NoteWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CHNNPCP83M;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NoteWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NoteWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = joviedo24.FilmThoughts.NoteWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		21ACC9492D070AF60050A741 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -256,12 +449,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FilmThoughts/FilmThoughts.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FilmThoughts/Preview Content\"";
 				DEVELOPMENT_TEAM = CHNNPCP83M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Film Thoughts";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -285,12 +481,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FilmThoughts/FilmThoughts.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FilmThoughts/Preview Content\"";
 				DEVELOPMENT_TEAM = CHNNPCP83M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Film Thoughts";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -312,6 +511,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		217026E82D11FEC30043C10B /* Build configuration list for PBXNativeTarget "NoteWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				217026E52D11FEC30043C10B /* Debug */,
+				217026E62D11FEC30043C10B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		21ACC9382D070AF50050A741 /* Build configuration list for PBXProject "FilmThoughts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

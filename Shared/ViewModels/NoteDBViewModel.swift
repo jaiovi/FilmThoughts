@@ -7,15 +7,14 @@
 
 import SwiftUI
 import Combine
-
-import Foundation
-
+import WidgetKit
 
 @MainActor
 class NotesDBViewModel: ObservableObject {
     @Published var notes: [NoteItem] = [] {
         didSet {
             saveNotes()
+            reloadWidget()
         }
     }
     
@@ -29,6 +28,7 @@ class NotesDBViewModel: ObservableObject {
             .sink { [weak self] notes in
                 print("Notes updated! Current count: \(notes.count)")
                 self?.saveNotes() // Save changes to persistence
+                self?.reloadWidget() // Reload widget when notes change
             }
             .store(in: &cancellables)
     }
@@ -71,12 +71,16 @@ class NotesDBViewModel: ObservableObject {
         }.resume()
     }
     
-    private let fileURL: URL = {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return documentsDirectory.appendingPathComponent("notes.json")
-    }()
+    private var sharedContainerURL: URL? {
+        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.joviedo24.FilmThoughts")
+    }
+
+    private var fileURL: URL {
+        sharedContainerURL?.appendingPathComponent("notes.json") ?? URL(fileURLWithPath: "")
+    }
 
     private func loadNotes() {
+        guard let fileURL = sharedContainerURL?.appendingPathComponent("notes.json") else { return }
         do {
             let data = try Data(contentsOf: fileURL)
             let decodedNotes = try JSONDecoder().decode([NoteItem].self, from: data)
@@ -88,12 +92,32 @@ class NotesDBViewModel: ObservableObject {
     }
 
     private func saveNotes() {
+        guard let fileURL = sharedContainerURL?.appendingPathComponent("notes.json") else { return }
         do {
             let data = try JSONEncoder().encode(notes)
             try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
         } catch {
             print("Failed to save notes: \(error.localizedDescription)")
         }
+    }
+    
+    // for WidgetKit
+    func fetchNotesFromFile() -> [NoteItem] {
+        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            .first!.appendingPathComponent("notes.json")
+        
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let notes = try JSONDecoder().decode([NoteItem].self, from: data)
+            return notes
+        } catch {
+            print("Failed to fetch notes: \(error)")
+            return []
+        }
+    }
+    
+    private func reloadWidget() {
+        WidgetCenter.shared.reloadAllTimelines() // Notify WidgetKit to reload widget
     }
 
 }

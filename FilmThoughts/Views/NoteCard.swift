@@ -36,7 +36,7 @@ struct NoteCard: View {
                 startPoint: .center,
                 endPoint: .bottom
             )
-            .frame(height: 150, alignment: .bottom)
+            //.frame(height: 150, alignment: .bottom)
 
             // Movie title text
             VStack(alignment: .leading, spacing: 5) {
