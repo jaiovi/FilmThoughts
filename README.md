@@ -1,6 +1,8 @@
 # 🎬 **FilmThoughts**
 
-FilmThoughts is a simple and elegant iOS app that allows users to capture their thoughts about movies they love. Whether it’s a review, quick note, or your personal reflections, you can add a movie title, attach an image, and save a note. FilmThoughts also provides a **Daily Note Widget**, which displays a random note each day directly on your home screen.
+![Preview](deliverable_preview.png)
+
+FilmThoughts is a simple and elegant iOS iPhone SwiftUI app that allows users to capture their thoughts about movies they love. Whether it’s a review, quick note, or your personal reflections, you can add a movie title, attach an image, and save a note. FilmThoughts also provides a **Daily Note Widget**, which displays a random note each day directly on your home screen.
 
 ---
 
@@ -37,10 +39,9 @@ open FilmThoughts.xcodeproj
 
 4. **Configure App Groups**:
 To enable the app and widget to share data:
-
-4.1 Go to Xcode Project Settings > Signing & Capabilities.
-4.2 Enable App Groups for both the app target and widget target.
-4.3 Add a group identifier, e.g., "group.com.yourcompany.FilmThoughts"
+- Go to Xcode Project Settings > Signing & Capabilities.
+- Enable App Groups for both the app target and widget target.
+- Add a group identifier, e.g., "group.com.yourcompany.FilmThoughts"
 
 5. Run the App:
 Select the appropriate simulator or physical device. Build and run the app (⌘R).
