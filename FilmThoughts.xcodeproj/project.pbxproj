@@ -10,6 +10,7 @@
 		217026D02D11FEC10043C10B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217026CF2D11FEC10043C10B /* WidgetKit.framework */; };
 		217026D22D11FEC10043C10B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217026D12D11FEC10043C10B /* SwiftUI.framework */; };
 		217026E32D11FEC30043C10B /* NoteWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 217026CD2D11FEC10043C10B /* NoteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		217027252D12D8AB0043C10B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 217027242D12D8A60043C10B /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		217026CF2D11FEC10043C10B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		217026D12D11FEC10043C10B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		217026EE2D1206680043C10B /* NoteWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NoteWidgetExtension.entitlements; sourceTree = "<group>"; };
+		217027242D12D8A60043C10B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		21ACC93D2D070AF60050A741 /* FilmThoughts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmThoughts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 		21ACC9342D070AF50050A741 = {
 			isa = PBXGroup;
 			children = (
+				217027242D12D8A60043C10B /* README.md */,
 				217026EE2D1206680043C10B /* NoteWidgetExtension.entitlements */,
 				212D49752D11FCBD007C0F59 /* Shared */,
 				21ACC93F2D070AF60050A741 /* FilmThoughts */,
@@ -238,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				217027252D12D8AB0043C10B /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
