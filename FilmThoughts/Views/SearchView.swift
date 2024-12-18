@@ -5,7 +5,7 @@
 //  Created by Jesus Sebastian Jaime Oviedo on 13/12/24.
 //
 
-// NOT IMPLEMENTED
+// TODO: Implement search
 
 import SwiftUI
 
@@ -17,14 +17,6 @@ struct SearchView: View {
         NavigationStack {
             Text("Search")
                 .font(.largeTitle)
-            /*
-             // I want to try this
-            if(viewModel.loadSearch!=null) {
-                ScrollView {
-                    
-                }
-            }
-             */
         }
         .searchable(text: $searchText)
         .onSubmit {

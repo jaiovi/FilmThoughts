@@ -19,7 +19,7 @@ struct TrendingView: View {
                         .padding()
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 20) {
+                        VStack(spacing: 20) {
                             ForEach(viewModel.trending) { movie in
                                 TrendingCard(movie: movie, notesViewModel: notesViewModel)
                             }
@@ -29,7 +29,6 @@ struct TrendingView: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .background(Color.background)
             .navigationTitle("Trending")
             .onAppear {
                 viewModel.loadTrending()

@@ -15,7 +15,7 @@ struct TrendingCard: View {
         NavigationLink(destination: AddNoteView(movieTitle: movie.title, movieID: movie.id, notesModel: notesViewModel)) {
             ZStack(alignment: .bottom) {
                 // Poster
-                AsyncImage(url: movie.poster_link) { image in
+                AsyncImage(url: movie.backdrop_link) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -29,6 +29,7 @@ struct TrendingCard: View {
                     let release_date_cut = movie.release_date.prefix(4)
                     Text("\(movie.title) (\(release_date_cut))")
                         .font(.headline)
+                        .foregroundStyle(Color.white)
                         .padding(10)
                 }
                 .frame(maxWidth: .infinity)
@@ -43,7 +44,7 @@ struct TrendingCard: View {
 
 #Preview {
     let notesViewModel = NotesDBViewModel()
-    let sampleMovie = MovieItem(adult: true, id: 345234, poster_path: "/lECA3TxwjTOjjMqjvUe9kBarmM9.jpg", title: "Wolverine", release_date: "2020-05-30")
+    let sampleMovie = MovieItem(adult: true, id: 345234, backdrop_path: "/lECA3TxwjTOjjMqjvUe9kBarmM9.jpg", title: "Wolverine", release_date: "2020-05-30")
 
     TrendingCard(movie: sampleMovie, notesViewModel: notesViewModel)
 }

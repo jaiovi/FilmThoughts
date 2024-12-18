@@ -48,48 +48,53 @@ struct NoteWidgetEntryView: View {
     @State private var averageColor: Color = .clear
 
     var body: some View {
-        if let note = entry.note {
-            // MARK: Inspired by NoteCard.swift
-            ZStack(alignment: .bottom) {
-                // Convert Data to UIImage and display
-                if let uiImage = UIImage(data: note.movieImage) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .scaledToFill()
-                        .clipped() // Ensures the image doesn't overflow
-                        .onAppear {
-                            // Extract average color when image appears
-                            if let color = uiImage.averageColor() {
-                                averageColor = Color(color)
+        VStack {
+            if let note = entry.note {
+                // MARK: Inspired by NoteCard.swift
+                ZStack(alignment: .bottom) {
+                    // Convert Data to UIImage and display
+                    if let uiImage = UIImage(data: note.movieImage) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFill()
+                            .clipped() // Ensures the image doesn't overflow
+                            .onAppear {
+                                // Extract average color when image appears
+                                if let color = uiImage.averageColor() {
+                                    averageColor = Color(color)
+                                }
                             }
-                        }
-                } else {
-                    Color.gray // Placeholder if image data is invalid
-                }
+                    } else {
+                        Color.gray // Placeholder if image data is invalid
+                    }
 
-                // Gradient overlay with extracted average color
-                LinearGradient(
-                    gradient: Gradient(colors: [averageColor.opacity(0.0), averageColor.opacity(0.7)]),
-                    startPoint: .center,
-                    endPoint: .bottom
-                )
+                    // Gradient overlay with extracted average color
+                    LinearGradient(
+                        gradient: Gradient(colors: [averageColor.opacity(0.0), averageColor.opacity(0.7)]),
+                        startPoint: .center,
+                        endPoint: .bottom
+                    )
 
-                // Movie title text
-                VStack(alignment: .leading, spacing: 5) {
-                    Text(note.movieTitle)
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        //.padding([.leading, .bottom], 10)
-                    Text(note.note)
-                        .font(.footnote)
-                        .foregroundColor(.white)
+                    // Movie title text
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text(note.movieTitle)
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            //.padding([.leading, .bottom], 10)
+                        Text(note.note)
+                            .font(.footnote)
+                            .foregroundColor(.white)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(EdgeInsets(top: 15, leading: 15, bottom: 30, trailing: 15))
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(EdgeInsets(top: 15, leading: 15, bottom: 30, trailing: 15))
+                .frame(maxWidth: .infinity) // Full width
+            } else {
+                Text("No Notes Available")
             }
-            .frame(maxWidth: .infinity) // Full width
-        } else {
-            Text("No Notes Available")
+        }
+        .containerBackground(for: .widget) {
+            
         }
     }
 }

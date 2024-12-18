@@ -40,6 +40,7 @@ class MovieDBViewModel: ObservableObject  {
         }
     }
     
+    // TODO: Create SearchView.swift and connect
     func loadSearch(searchTitle: String, searchPage: Int) {
         Task {
             let url = URL(string: "https://api.themoviedb.org/3/search/movie")!
@@ -76,12 +77,13 @@ struct TrendingResults :  Decodable {
 struct MovieItem : Identifiable, Decodable {
     let adult: Bool
     let id: Int
-    let poster_path: String
+    //let poster_path: String
+    let backdrop_path: String
     let title: String
     let release_date: String
     
-    var poster_link: URL {
+    var backdrop_link: URL {
         let baseURL = URL(string: "https://image.tmdb.org/t/p/w300")!
-        return baseURL.appendingPathComponent(poster_path)
+        return baseURL.appendingPathComponent(backdrop_path)
     }
 }

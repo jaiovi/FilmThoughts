@@ -18,6 +18,8 @@ struct HomeView: View {
                 List {
                     ForEach(notesViewModel.notes) { note in
                         NoteCard(note: note)
+                            /*
+                             // TODO: Implement edit
                             .swipeActions(edge: .trailing) { // Add swipe, only available for List
                                 
                                 Button {
@@ -26,6 +28,7 @@ struct HomeView: View {
                                     Label("Edit", systemImage: "pencil")
                                 }
                             }
+                             */
                             .swipeActions {
                                 Button(role: .destructive) {
                                     notesViewModel.removeNote(note: note)

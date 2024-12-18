@@ -12,6 +12,13 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
+            Tab("Notes", systemImage: "books.vertical.fill"){
+                HomeView(notesViewModel: notesViewModel)
+            }
+            Tab("Trending", systemImage: "chart.line.uptrend.xyaxis"){
+                TrendingView(notesViewModel: notesViewModel)
+            }
+            /*
             HomeView(notesViewModel: notesViewModel)
                 .tabItem {
                     Label("Notes", systemImage: "books.vertical.fill")
@@ -20,7 +27,9 @@ struct ContentView: View {
                 .tabItem {
                     Label("Trending", systemImage: "chart.line.uptrend.xyaxis")
                 }
+             */
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

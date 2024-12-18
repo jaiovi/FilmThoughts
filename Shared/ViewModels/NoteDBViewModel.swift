@@ -17,12 +17,11 @@ class NotesDBViewModel: ObservableObject {
             reloadWidget()
         }
     }
-    
-    private var cancellables = Set<AnyCancellable>()
 
     init() {
         loadNotes()
-
+        /*
+         private var cancellables = Set<AnyCancellable>()
         // Observe changes to the notes array and print a message when a new note is added
         $notes
             .sink { [weak self] notes in
@@ -31,18 +30,20 @@ class NotesDBViewModel: ObservableObject {
                 self?.reloadWidget() // Reload widget when notes change
             }
             .store(in: &cancellables)
+         */
     }
 
     func addNote(title: String, imageUrl: URL, note: String) {
         downloadImage(from: imageUrl) { [weak self] imageData in
-            guard let imageData = imageData else { return }
-
-            DispatchQueue.main.async {
+            guard let self = self, let imageData = imageData else { return }
+            
+            Task { @MainActor in
                 let newNote = NoteItem(movieTitle: title, movieImage: imageData, note: note)
-                self?.notes.append(newNote)
+                self.notes.append(newNote) // Trigger SwiftUI update
             }
         }
     }
+
 
     // Function to remove a note
     func removeNote(note: NoteItem) {

@@ -18,7 +18,6 @@ struct NoteCard: View {
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFill()
-                    .frame(maxWidth: .infinity)
                     .clipped()
                     .onAppear {
                         // Extract average color when image appears
@@ -36,14 +35,12 @@ struct NoteCard: View {
                 startPoint: .center,
                 endPoint: .bottom
             )
-            //.frame(height: 150, alignment: .bottom)
 
             // Movie title text
             VStack(alignment: .leading, spacing: 5) {
                 Text(note.movieTitle)
                     .font(.headline)
                     .foregroundColor(.white)
-                    //.padding([.leading, .bottom], 10)
                 Text(note.note)
                     .font(.footnote)
                     .foregroundColor(.white)
