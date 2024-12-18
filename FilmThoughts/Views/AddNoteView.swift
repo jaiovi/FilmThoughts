@@ -19,6 +19,8 @@ struct AddNoteView: View {
     
     @Environment(\.dismiss) var dismiss // For dismissing the view
     
+    @FocusState private var textEditorIsFocused: Bool
+    
     var isDataValid: Bool {
         // Check if both the note content and an image are selected
         return !noteContent.isEmpty && selectedImagePath != nil
@@ -39,6 +41,7 @@ struct AddNoteView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
                         ForEach(viewModel.filteredImages) { image in
+                            let isSelected = selectedImagePath == image.file_path
                             AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(image.file_path)")) { phase in
                                 if let loadedImage = phase.image {
                                     loadedImage
@@ -48,25 +51,38 @@ struct AddNoteView: View {
                                         .cornerRadius(8)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 8)
-                                                .stroke(selectedImagePath == image.file_path ? Color.blue : Color.clear, lineWidth: 3)
+                                                .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 3)
                                         )
                                         .onTapGesture {
                                             selectedImagePath = image.file_path
                                         }
+                                        .accessibilityElement(children: .ignore) // Treat as single accessibility element
+                                        .accessibilityLabel("Image for movie") // General image description
+                                        .accessibilityValue(isSelected ? "Selected" : "Not selected")
+                                        .accessibilityAddTraits(.isButton) // Treat image as button for VoiceOver
+                                        .accessibilityHint("Double-tap to select this image")
                                 } else {
                                     ProgressView()
                                         .frame(width: 150, height: 100)
+                                        .accessibilityLabel("Loading image")
                                 }
                             }
                         }
+
                     }
                 }
                 .frame(height: 120)
             }
             
             Section(header: Text("Add Your Note")) {
-                TextEditor(text: $noteContent)
-                    .frame(minHeight: 150)
+                // Changed from textEditor to textField to use onSubmit
+                TextField("Write up...", text: $noteContent) //axis: .vertical
+                    .focused($textEditorIsFocused)
+                    .frame(minHeight: 50)
+                    .submitLabel(.done)
+                    .onSubmit() {
+                        textEditorIsFocused = false
+                    }
             }
             
             Section {
